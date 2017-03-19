@@ -1,0 +1,38 @@
+{
+  "name": "update-readme-installation",
+  "version": "0.0.0",
+  "description": "A plugin for `update-readme` to auto-generate the Installation section of your README from package.json",
+  "main": "lib/installation.js",
+  "scripts": {
+    "build": "babel src --out-dir lib",
+    "prepublish": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "babel": {
+    "plugins": [
+      "transform-es2015-modules-commonjs",
+      "transform-async-to-generator"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/update-readme/update-readme-installation.git"
+  },
+  "keywords": [],
+  "author": "William Hilton <wmhilton@gmail.com>",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/update-readme/update-readme-installation/issues"
+  },
+  "homepage": "https://github.com/update-readme/update-readme-installation#readme",
+  "dependencies": {
+    "fetch-nice-package": "^1.0.2",
+    "nice-package": "^3.0.3",
+    "normalize-package-data": "^2.3.6"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-plugin-transform-async-to-generator": "^6.22.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.0"
+  }
+}
