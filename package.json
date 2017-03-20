@@ -2,9 +2,9 @@
   "name": "update-readme-installation",
   "version": "0.0.0",
   "description": "A plugin for `update-readme` to auto-generate the Installation section of your README from package.json",
-  "main": "lib/installation.js",
+  "main": "dist/lib/installation.js",
   "scripts": {
-    "build": "babel src --out-dir lib",
+    "build": "babel lib --out-dir dist/lib",
     "prepublish": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
