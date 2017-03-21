@@ -1,10 +1,8 @@
 'use strict'
 const path = require('path')
-const NicePackage = require('nice-package')
-const fetchNicePackage = require('fetch-nice-package')
 const normalizeData = require('normalize-package-data')
 
-module.exports = async function (sections) {
+module.exports = function (sections) {
   for (let n in sections) {
     let headline = sections[n].split('\n', 1)
     headline = headline.length === 1 ? headline[0] : ''
@@ -21,21 +19,12 @@ module.exports = async function (sections) {
       // some logical derivation
       var fromWhere = '', optGlobal = '', optSave = ''
       // 'private' is used to prevent publishing. So installing from npm would be impossible.
-      if (hasPrivate && hasRepo) {
-        fromWhere = pkg.repository.url
-      }
-      // if it's private, and does NOT have a repo, give up the ghost
-      if (hasPrivate && !hasRepo) {
-        throw new Error(`Cannot generate installation instructions for a private module with no 'repository' set in package.json`)
-        // Note: I feel that fixing the package.json is outside the scope of this module's task. Obviously, if no repo.url
-        // is set, then some other tool needs to correct that, and then and only then this module be run to update the README.
-      }
-      let npm = await fetchNicePackage(pkg.name)
-      normalizeData(npm)
-      // If this package name already exists on npm with a different author, install from Github.
-      // Otherwise, this module is or will be published on npm
-      if (hasRepo && npm.valid && npm.author.name !== pkg.author.name) {
-        fromWhere = pkg.repository.url
+      if (hasPrivate) {
+        if (hasRepo) {
+          fromWhere = pkg.repository.url
+        } else {
+          throw new Error(`Cannot generate installation instructions for a private module with no 'repository' set in package.json`)
+        }
       } else {
         fromWhere = pkg.name
       }
