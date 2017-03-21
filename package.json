@@ -6,6 +6,7 @@
   "scripts": {
     "build": "babel src --out-dir dist",
     "prepublish": "npm run build",
+    "lint": "standard --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,6 +26,7 @@
   "devDependencies": {
     "babel-cli": "^6.24.0",
     "babel-plugin-transform-async-to-generator": "^6.22.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.0"
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.0",
+    "standard": "^9.0.2"
   }
 }

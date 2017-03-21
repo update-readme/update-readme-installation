@@ -10,14 +10,13 @@ module.exports = function (sections) {
       let pkg = require(path.join(process.cwd(), 'package.json'))
       normalizeData(pkg)
       // some facts
-      var hasPrivate, hasRepo, hasMain, hasBin, hasGlobal
-      hasPrivate = Boolean(pkg.private)
-      hasRepo = Boolean(pkg.repository && pkg.repository.type === 'git' && pkg.repository.url)
-      hasMain = Boolean(pkg.main)
-      hasBin = Boolean(pkg.bin)
-      hasGlobal = Boolean(pkg.preferGlobal)
+      let hasPrivate = Boolean(pkg.private)
+      let hasRepo = Boolean(pkg.repository && pkg.repository.type === 'git' && pkg.repository.url)
+      let hasGlobal = Boolean(pkg.preferGlobal)
       // some logical derivation
-      var fromWhere = '', optGlobal = '', optSave = ''
+      let fromWhere = ''
+      let optGlobal = ''
+      let optSave = ''
       // 'private' is used to prevent publishing. So installing from npm would be impossible.
       if (hasPrivate) {
         if (hasRepo) {
@@ -35,13 +34,13 @@ module.exports = function (sections) {
       }
       // finally
       sections[n] =
-        [ headline
-        , ''
-        , '```'
-        , `npm install ${fromWhere}${optGlobal}${optSave}`
-        , '```'
-        , ''
-        , ''].join('\n')
+        [ headline,
+          '',
+          '```',
+          `npm install ${fromWhere}${optGlobal}${optSave}`,
+          '```',
+          '',
+          ''].join('\n')
     }
   }
   return sections
